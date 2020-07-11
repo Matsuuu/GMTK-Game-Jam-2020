@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public int acceleration = 1;
     public int traction = 70;
     public float jumpPower;
+    public int jumpFrameCount;
     public Vector2 velocity;
     public float currentSpeed;
     public int gravity;
@@ -147,10 +148,10 @@ public class PlayerController : MonoBehaviour
     {
         jumping = true;
         ascending = true;
-        int jumpAscendFrames = 14;
-        for (int i = 0; i < jumpAscendFrames; i++)
+        float increment = jumpPower / jumpFrameCount;
+        for (int i = 0; i < jumpFrameCount; i++)
         {
-            velocity.y = jumpPower - (i * 0.02f);
+            velocity.y = jumpPower - (i * increment);
             yield return new WaitForEndOfFrame();
         }
         jumping = false;
