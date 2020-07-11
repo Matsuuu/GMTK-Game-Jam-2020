@@ -15,12 +15,15 @@ public class PlayerController : MonoBehaviour
     public int maxSpeed = 1;
     public int acceleration = 1;
     public int traction = 70;
-    public int jumpPower;
+    public float jumpPower;
     public Vector2 velocity;
     public float currentSpeed;
     public int gravity;
+
     public bool inAir;
     public bool onGround;
+    public bool jumping;
+    public bool ascending;
 
     // The reducers are used to use float values because we're moving in such a small space that 
     // writing small floats like 0.001 for public values would be ugly
@@ -30,7 +33,7 @@ public class PlayerController : MonoBehaviour
     float jumpReducer;
     float gravityReducer;
     float turningTraction = 0.10f;
-    float minVelocity = -0.05f;
+    float minVelocity = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +45,7 @@ public class PlayerController : MonoBehaviour
         accelerationReducer = acceleration * 0.001f; // We reduce the velocity and traction by this multiplier to keep the public numbers simple
         tractionReducer = traction * 0.001f;
         jumpReducer = jumpPower * 0.1f;
-        gravityReducer = gravity * 0.1f;
+        gravityReducer = gravity * 0.01f;
     }
 
     // Update is called once per frame
@@ -56,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleGravity()
     {
-        if (onGround) return;
+        if (onGround || ascending) return;
 
         if (velocity.y > minVelocity)
         {
@@ -78,7 +81,8 @@ public class PlayerController : MonoBehaviour
         }
 
         float newXVelocity = x + velocity.x;
-        transform.position = new Vector2(newXVelocity, y + velocity.y);
+        float newYVelocity = onGround && !jumping ? y : y + velocity.y;
+        transform.position = new Vector2(newXVelocity, newYVelocity);
     }
 
     private void HandleControls()
@@ -135,8 +139,22 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(jump))
         {
-            velocity.y = jumpReducer;
+            StartCoroutine(HandleJump());
         }
+    }
+
+    private IEnumerator HandleJump()
+    {
+        jumping = true;
+        ascending = true;
+        int jumpAscendFrames = 14;
+        for (int i = 0; i < jumpAscendFrames; i++)
+        {
+            velocity.y = jumpPower - (i * 0.02f);
+            yield return new WaitForEndOfFrame();
+        }
+        jumping = false;
+        ascending = false;
     }
 
     private void SlowDownVelocity()
@@ -152,5 +170,15 @@ public class PlayerController : MonoBehaviour
         }
 
         velocity = new Vector2(xVelocity, yVelocity);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        onGround = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        onGround = false;
     }
 }
