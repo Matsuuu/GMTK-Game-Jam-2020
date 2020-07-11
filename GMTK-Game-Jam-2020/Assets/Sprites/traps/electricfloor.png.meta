@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 5fbf60fa264772e4bb53938fc91d4f4c
 TextureImporter:
   internalIDToNameTable:
@@ -14,6 +15,11 @@ TextureImporter:
   - first:
       213: 2768408352543106659
     second: electricfloor_3
+=======
+guid: e949d55f3bb0c9448a13e7eb28137f6b
+TextureImporter:
+  internalIDToNameTable: []
+>>>>>>> f47e556b1e8f234372762610b847da48e2e82006
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -43,7 +49,11 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<< HEAD
     filterMode: 0
+=======
+    filterMode: -1
+>>>>>>> f47e556b1e8f234372762610b847da48e2e82006
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -52,7 +62,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
+<<<<<<< HEAD
   spriteMode: 2
+=======
+  spriteMode: 1
+>>>>>>> f47e556b1e8f234372762610b847da48e2e82006
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -76,6 +90,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
+<<<<<<< HEAD
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
@@ -101,6 +116,9 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 2
+=======
+    textureCompression: 1
+>>>>>>> f47e556b1e8f234372762610b847da48e2e82006
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -109,6 +127,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
+<<<<<<< HEAD
     sprites:
     - serializedVersion: 2
       name: electricfloor_0
@@ -194,6 +213,9 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+=======
+    sprites: []
+>>>>>>> f47e556b1e8f234372762610b847da48e2e82006
     outline: []
     physicsShape: []
     bones: []
