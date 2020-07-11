@@ -1,19 +1,34 @@
 fileFormatVersion: 2
-guid: a3d017779f2af8646afd10ba67e2b759
+guid: 26fa109aec720de4db95bf6bdebd6b99
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -431380083028963996
-    second: herochar_before_jump_dust_anim_strip_4_0
+      213: -1502589710252518214
+    second: monitorguy_jump_sheet_0
   - first:
-      213: 8287373177888498789
-    second: herochar_before_jump_dust_anim_strip_4_1
+      213: -1226538177676317718
+    second: monitorguy_jump_sheet_1
   - first:
-      213: -7022064718951294262
-    second: herochar_before_jump_dust_anim_strip_4_2
+      213: 6744431911434997440
+    second: monitorguy_jump_sheet_2
   - first:
-      213: -2334352711778245859
-    second: herochar_before_jump_dust_anim_strip_4_3
+      213: -4412702918029405617
+    second: monitorguy_jump_sheet_3
+  - first:
+      213: -4714232233382067151
+    second: monitorguy_jump_sheet_4
+  - first:
+      213: 6821929836590953148
+    second: monitorguy_jump_sheet_5
+  - first:
+      213: 625384553350066474
+    second: monitorguy_jump_sheet_6
+  - first:
+      213: 4621494854972977744
+    second: monitorguy_jump_sheet_7
+  - first:
+      213: -3388555312729912318
+    second: monitorguy_jump_sheet_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -111,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: herochar_before_jump_dust_anim_strip_4_0
+      name: monitorguy_jump_sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,41 +140,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46d41eb991e630af0800000000000000
-      internalID: -431380083028963996
+      spriteID: ab4dd3d9e9ab52be0800000000000000
+      internalID: -1502589710252518214
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: herochar_before_jump_dust_anim_strip_4_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 564e4253ff9a20370800000000000000
-      internalID: 8287373177888498789
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: herochar_before_jump_dust_anim_strip_4_2
+      name: monitorguy_jump_sheet_1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,20 +161,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acada15b75d9c8e90800000000000000
-      internalID: -7022064718951294262
+      spriteID: aebe520a6067afee0800000000000000
+      internalID: -1226538177676317718
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: herochar_before_jump_dust_anim_strip_4_3
+      name: monitorguy_jump_sheet_2
       rect:
         serializedVersion: 2
-        x: 48
+        x: 64
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,8 +182,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d13ecf99396ba9fd0800000000000000
-      internalID: -2334352711778245859
+      spriteID: 0ce44e40719099d50800000000000000
+      internalID: 6744431911434997440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monitorguy_jump_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f421787531ee2c2c0800000000000000
+      internalID: -4412702918029405617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monitorguy_jump_sheet_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 134c094c2cea39eb0800000000000000
+      internalID: -4714232233382067151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monitorguy_jump_sheet_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb274a0da0d5cae50800000000000000
+      internalID: 6821929836590953148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monitorguy_jump_sheet_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a21727610ffcda800800000000000000
+      internalID: 625384553350066474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monitorguy_jump_sheet_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 052b5f9b519d22040800000000000000
+      internalID: 4621494854972977744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monitorguy_jump_sheet_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20c88fa75ee69f0d0800000000000000
+      internalID: -3388555312729912318
       vertices: []
       indices: 
       edges: []

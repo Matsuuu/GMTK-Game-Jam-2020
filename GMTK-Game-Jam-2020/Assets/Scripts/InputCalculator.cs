@@ -19,7 +19,6 @@ public class InputCalculator : MonoBehaviour
     void Start()
     {
         inputs = GameObject.Find("GameManager").GetComponent<InputManager>();
-
     }
 
     // Update is called once per frame
@@ -30,21 +29,40 @@ public class InputCalculator : MonoBehaviour
 
     private void CheckInputs()
     {
-        if (Input.GetKeyDown(inputs.leftMove) || Input.GetKeyDown(inputs.rightMove))
-        {
-            movementInputCount++;
-            movementCountTextElement.text = movementInputCount.ToString();
-        }
-        if (Input.GetKeyDown(inputs.jump))
-        {
-            jumpInputCount++;
-            jumpCountTextElement.text = jumpInputCount.ToString();
-        }
     }
 
-    public void init(Nullable<int> movementInputs, Nullable<int> jumpInputs)
+    public void IncrementJumpCounter()
+    {
+        jumpInputCount++;
+        UpdateTextElements();
+    }
+
+    public void IncrementMovementCounter()
+    {
+        movementInputCount++;
+        UpdateTextElements();
+    }
+
+    private void UpdateTextElements()
+    {
+        movementCountTextElement.text = movementInputCount + "/" + maxMovementInputCount;
+        jumpCountTextElement.text = jumpInputCount + "/" + maxJumpInputCount;
+    }
+
+    public void Init(Nullable<int> movementInputs, Nullable<int> jumpInputs)
     {
         this.maxMovementInputCount = movementInputs;
         this.maxJumpInputCount = jumpInputs;
+        UpdateTextElements();
+    }
+
+    public bool movementControlsExhausted()
+    {
+        return movementInputCount >= maxMovementInputCount;
+    }
+
+    public bool jumpControlsExhausted()
+    {
+        return jumpInputCount >= maxJumpInputCount;
     }
 }

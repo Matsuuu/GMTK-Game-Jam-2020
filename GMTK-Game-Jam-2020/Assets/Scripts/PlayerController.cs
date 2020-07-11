@@ -8,8 +8,12 @@ public class PlayerController : MonoBehaviour
 {
 
     private InputManager inputs;
+    private InputCalculator inputCalculator;
     private Animator animator;
     private Rigidbody2D rigidbody;
+
+    private ParticleSystem jumpParticles;
+    private ParticleSystem rocketParticles;
 
     public int maxSpeed = 1;
     public int acceleration = 1;
@@ -23,7 +27,6 @@ public class PlayerController : MonoBehaviour
     public bool inAir;
     public bool onGround;
     public bool jumping;
-    public bool ascending;
     public int jumpCount;
 
     // The reducers are used to use float values because we're moving in such a small space that 
@@ -42,6 +45,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         inputs = GameObject.Find("GameManager").GetComponent<InputManager>();
+        inputCalculator = GameObject.Find("GameManager").GetComponent<InputCalculator>();
+        jumpParticles = GameObject.Find("JumpParticles").GetComponent<ParticleSystem>();
+        rocketParticles = GameObject.Find("RocketParticles").GetComponent<ParticleSystem>();
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
@@ -76,7 +82,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleGravity()
     {
-        if (onGround || ascending) return;
+        if (onGround || jumping) return;
 
         if (velocity.y > minVelocity)
         {
@@ -110,9 +116,16 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovementControls()
     {
+        bool inputsHaveBeenExhausted = inputCalculator.movementControlsExhausted();
+
+        if ((Input.GetKeyUp(inputs.leftMove) || Input.GetKeyUp(inputs.rightMove)) && !inputsHaveBeenExhausted)
+        {
+            inputCalculator.IncrementMovementCounter();
+        }
+
         bool hasMovement = false;
         float xVelocity = velocity.x;
-        if (Input.GetKey(inputs.leftMove) && xVelocity > -maxSpeed)
+        if (Input.GetKey(inputs.leftMove) && xVelocity > -maxSpeed && !inputsHaveBeenExhausted)
         {
             if (xVelocity > 0)
             {
@@ -128,7 +141,7 @@ public class PlayerController : MonoBehaviour
             velocity = new Vector2(newXVelocity, velocity.y);
             transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
         }
-        if (Input.GetKey(inputs.rightMove) && xVelocity < maxSpeed && !hasMovement)
+        if (Input.GetKey(inputs.rightMove) && xVelocity < maxSpeed && !hasMovement && !inputsHaveBeenExhausted)
         {
             if (xVelocity < 0)
             {
@@ -154,8 +167,14 @@ public class PlayerController : MonoBehaviour
 
     private void HandleJumpControls()
     {
+        if (inputCalculator.jumpControlsExhausted())
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(inputs.jump) && jumpCount < 2)
         {
+            inputCalculator.IncrementJumpCounter();
             jumpCount++;
             if (!onGround && jumpCount == 0)
             {
@@ -173,11 +192,15 @@ public class PlayerController : MonoBehaviour
     private IEnumerator HandleJump()
     {
         jumping = true;
-        ascending = true;
         bool isDoubleJump = jumpCount >= 2;
+        animator.SetTrigger("Jump");
         if (isDoubleJump)
         {
+            rocketParticles.Play();
             rigidbody.velocity = Vector3.zero;
+        } else
+        {
+            jumpParticles.Play();
         }
 
         float increment = jumpPower / jumpFrameCount;
@@ -188,7 +211,6 @@ public class PlayerController : MonoBehaviour
         }
         
         jumping = false;
-        ascending = false;
         jumpCoroutine = null;
     }
 
@@ -206,9 +228,18 @@ public class PlayerController : MonoBehaviour
         velocity = new Vector2(xVelocity, yVelocity);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (jumpCount > 0 || animator.GetBool("InAir"))
+        {
+            animator.SetTrigger("Landing");
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         onGround = true;
+        animator.SetBool("InAir", false);
         if (!jumping)
         {
             jumpCount = 0;
@@ -218,5 +249,6 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         onGround = false;
+        animator.SetBool("InAir", true);
     }
 }

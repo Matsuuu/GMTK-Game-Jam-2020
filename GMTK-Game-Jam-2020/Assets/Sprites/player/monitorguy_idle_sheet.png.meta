@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: a3d017779f2af8646afd10ba67e2b759
+guid: fc971450c65ee624e9538b7afa499480
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -431380083028963996
-    second: herochar_before_jump_dust_anim_strip_4_0
+      213: 4525602453759873327
+    second: monitorguy_idle_sheet_0
   - first:
-      213: 8287373177888498789
-    second: herochar_before_jump_dust_anim_strip_4_1
+      213: 339253857878106780
+    second: monitorguy_idle_sheet_1
   - first:
-      213: -7022064718951294262
-    second: herochar_before_jump_dust_anim_strip_4_2
+      213: 526337127608380138
+    second: monitorguy_idle_sheet_2
   - first:
-      213: -2334352711778245859
-    second: herochar_before_jump_dust_anim_strip_4_3
+      213: 2598768492275212730
+    second: monitorguy_idle_sheet_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -111,13 +111,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: herochar_before_jump_dust_anim_strip_4_0
+      name: monitorguy_idle_sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,41 +125,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46d41eb991e630af0800000000000000
-      internalID: -431380083028963996
+      spriteID: f215efa347b2ece30800000000000000
+      internalID: 4525602453759873327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: herochar_before_jump_dust_anim_strip_4_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 564e4253ff9a20370800000000000000
-      internalID: 8287373177888498789
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: herochar_before_jump_dust_anim_strip_4_2
+      name: monitorguy_idle_sheet_1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,20 +146,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acada15b75d9c8e90800000000000000
-      internalID: -7022064718951294262
+      spriteID: c926187169545b400800000000000000
+      internalID: 339253857878106780
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: herochar_before_jump_dust_anim_strip_4_3
+      name: monitorguy_idle_sheet_2
       rect:
         serializedVersion: 2
-        x: 48
+        x: 64
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,8 +167,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d13ecf99396ba9fd0800000000000000
-      internalID: -2334352711778245859
+      spriteID: aea623334dced4700800000000000000
+      internalID: 526337127608380138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: monitorguy_idle_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab1aa83cc2ea01420800000000000000
+      internalID: 2598768492275212730
       vertices: []
       indices: 
       edges: []
