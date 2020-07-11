@@ -21,5 +21,6 @@ public class GoalZone : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         persistentDataManager.EndTime();
+        GameObject.Find("Player").GetComponent<PlayerController>().HandleLevelEnd();
     }
 }

@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public float currentSpeed;
     public int gravity;
 
-    public bool dead = false;
+    public bool noMove = false;
     public bool inAir;
     public bool onGround;
     public bool jumping;
@@ -62,14 +62,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (dead) return;
+        if (noMove) return;
         HandleControls();
         HandleReset();
     }
 
     private void FixedUpdate()
     {
-        if (dead) return;
+        if (noMove) return;
         HandleVelocity();
         HandleGravity();
         currentSpeed = velocity.magnitude;
@@ -178,11 +178,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(inputs.jump) && jumpCount < 2)
         {
             inputCalculator.IncrementJumpCounter();
-            jumpCount++;
             if (!onGround && jumpCount == 0)
             {
                 jumpCount++;
             }
+            jumpCount++;
             if (jumpCoroutine != null)
             {
                 StopCoroutine(jumpCoroutine);
@@ -257,7 +257,13 @@ public class PlayerController : MonoBehaviour
 
     private void TriggerDeath()
     {
-        dead = true;
+        noMove = true;
         animator.SetTrigger("Death");
+    }
+
+    public void HandleLevelEnd()
+    {
+        noMove = true;
+        animator.SetTrigger("Goal");
     }
 }
