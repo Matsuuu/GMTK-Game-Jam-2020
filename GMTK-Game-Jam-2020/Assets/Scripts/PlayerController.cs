@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
@@ -270,8 +271,8 @@ public class PlayerController : MonoBehaviour
 
     private void TriggerDeath()
     {
+        animator.SetBool("Death", true);
         noMove = true;
-        animator.SetTrigger("Death");
         StartCoroutine(WaitForReset());
     }
 
@@ -284,6 +285,6 @@ public class PlayerController : MonoBehaviour
     public void HandleLevelEnd()
     {
         noMove = true;
-        animator.SetTrigger("Goal");
+        animator.SetBool("Goal", true);
     }
 }
