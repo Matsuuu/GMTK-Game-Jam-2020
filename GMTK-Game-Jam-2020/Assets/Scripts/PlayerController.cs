@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private KeyCode jump = KeyCode.Space;
 
     private Animator animator;
+    private Rigidbody2D rigidbody;
 
     public int maxSpeed = 1;
     public int acceleration = 1;
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = 300;
+        rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
         velocity = new Vector2(0, 0);
@@ -152,6 +154,10 @@ public class PlayerController : MonoBehaviour
         jumping = true;
         ascending = true;
         bool isDoubleJump = jumpCount == 2;
+        if (isDoubleJump)
+        {
+            rigidbody.velocity = Vector3.zero;
+        }
 
         float increment = jumpPower / jumpFrameCount;
         for (int i = 0; i < jumpFrameCount; i++)
@@ -166,7 +172,6 @@ public class PlayerController : MonoBehaviour
 
     private void SlowDownVelocity()
     {
-        float beforeModification = velocity.x;
         float xVelocity = velocity.x - velocity.x * tractionReducer;
         float yVelocity = velocity.y;
 
@@ -182,7 +187,10 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         onGround = true;
-        jumpCount = 0;
+        if (!jumping)
+        {
+            jumpCount = 0;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

@@ -243,7 +243,7 @@ MonoBehaviour:
   acceleration: 100
   traction: 150
   jumpPower: 17.5
-  jumpFrameCount: 26
+  jumpFrameCount: 34
   velocity: {x: 0, y: 0}
   currentSpeed: 0
   gravity: 1
