@@ -79,8 +79,13 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(inputs.reset))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            DoReset();
         }
+    }
+
+    private void DoReset()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void HandleGravity()
@@ -255,10 +260,25 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("InAir", true);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy" && !noMove)
+        {
+            TriggerDeath();
+        } 
+    }
+
     private void TriggerDeath()
     {
         noMove = true;
         animator.SetTrigger("Death");
+        StartCoroutine(WaitForReset());
+    }
+
+    public IEnumerator WaitForReset()
+    {
+        yield return new WaitForSeconds(4);
+        DoReset();
     }
 
     public void HandleLevelEnd()
