@@ -239,10 +239,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80e0097e47ffb5c45bec2ac77e10d3c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 1
-  acceleration: 2
+  maxSpeed: 50
+  acceleration: 100
   traction: 150
-  jumpPower: 0.25
+  jumpPower: 17.5
   jumpFrameCount: 26
   velocity: {x: 0, y: 0}
   currentSpeed: 0
@@ -251,6 +251,7 @@ MonoBehaviour:
   onGround: 0
   jumping: 0
   ascending: 0
+  jumpCount: 0
 --- !u!61 &166809202
 BoxCollider2D:
   m_ObjectHideFlags: 0

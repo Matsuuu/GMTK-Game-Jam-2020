@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public bool onGround;
     public bool jumping;
     public bool ascending;
+    public int jumpCount;
 
     // The reducers are used to use float values because we're moving in such a small space that 
     // writing small floats like 0.001 for public values would be ugly
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 300;
         animator = GetComponent<Animator>();
 
         velocity = new Vector2(0, 0);
@@ -81,8 +83,8 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Running", true);
         }
 
-        float newXVelocity = x + velocity.x;
-        float newYVelocity = onGround && !jumping ? y : y + velocity.y;
+        float newXVelocity = x + velocity.x * Time.deltaTime;
+        float newYVelocity = onGround && !jumping ? y : y + velocity.y * Time.deltaTime;
         transform.position = new Vector2(newXVelocity, newYVelocity);
     }
 
@@ -138,7 +140,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleJumpControls()
     {
-        if (Input.GetKeyDown(jump))
+        if (Input.GetKeyDown(jump) && jumpCount < 2)
         {
             StartCoroutine(HandleJump());
         }
@@ -146,14 +148,18 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator HandleJump()
     {
+        jumpCount++;
         jumping = true;
         ascending = true;
+        bool isDoubleJump = jumpCount == 2;
+
         float increment = jumpPower / jumpFrameCount;
         for (int i = 0; i < jumpFrameCount; i++)
         {
             velocity.y = jumpPower - (i * increment);
             yield return new WaitForEndOfFrame();
         }
+        
         jumping = false;
         ascending = false;
     }
@@ -176,6 +182,7 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         onGround = true;
+        jumpCount = 0;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
