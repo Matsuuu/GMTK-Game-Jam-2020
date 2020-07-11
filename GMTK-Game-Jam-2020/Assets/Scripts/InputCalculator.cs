@@ -46,7 +46,17 @@ public class InputCalculator : MonoBehaviour
     private void UpdateTextElements()
     {
         movementCountTextElement.text = movementInputCount + "/" + maxMovementInputCount;
+        if (movementInputCount >= maxMovementInputCount)
+        {
+            movementCountTextElement.text = movementCountTextElement.text + "!";
+            movementCountTextElement.color = Color.red;
+        }
         jumpCountTextElement.text = jumpInputCount + "/" + maxJumpInputCount;
+        if (jumpInputCount >= maxJumpInputCount)
+        {
+            jumpCountTextElement.text = jumpCountTextElement.text + "!";
+            jumpCountTextElement.color = Color.red;
+        }
     }
 
     public void Init(Nullable<int> movementInputs, Nullable<int> jumpInputs)
