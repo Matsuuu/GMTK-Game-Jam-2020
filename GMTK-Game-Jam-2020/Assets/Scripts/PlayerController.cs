@@ -2,14 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
 
-    private KeyCode leftMove = KeyCode.A;
-    private KeyCode rightMove = KeyCode.D;
-    private KeyCode jump = KeyCode.Space;
-
+    private InputManager inputs;
     private Animator animator;
     private Rigidbody2D rigidbody;
 
@@ -38,10 +36,12 @@ public class PlayerController : MonoBehaviour
     float turningTraction = 0.10f;
     float minVelocity = 0;
 
+    private Coroutine jumpCoroutine;
+
     // Start is called before the first frame update
     void Start()
     {
-        Application.targetFrameRate = 300;
+        inputs = GameObject.Find("GameManager").GetComponent<InputManager>();
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
@@ -53,13 +53,25 @@ public class PlayerController : MonoBehaviour
         gravityReducer = gravity * 0.01f;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        HandleVelocity();
         HandleControls();
+        HandleReset();
+    }
+
+    private void FixedUpdate()
+    {
+        HandleVelocity();
         HandleGravity();
         currentSpeed = velocity.magnitude;
+    }
+
+    private void HandleReset()
+    {
+        if (Input.GetKeyDown(inputs.reset))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     private void HandleGravity()
@@ -98,9 +110,9 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovementControls()
     {
-        Boolean hasMovement = false;
+        bool hasMovement = false;
         float xVelocity = velocity.x;
-        if (Input.GetKey(leftMove) && xVelocity > -maxSpeed)
+        if (Input.GetKey(inputs.leftMove) && xVelocity > -maxSpeed)
         {
             if (xVelocity > 0)
             {
@@ -116,7 +128,7 @@ public class PlayerController : MonoBehaviour
             velocity = new Vector2(newXVelocity, velocity.y);
             transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
         }
-        if (Input.GetKey(rightMove) && xVelocity < maxSpeed && !hasMovement)
+        if (Input.GetKey(inputs.rightMove) && xVelocity < maxSpeed && !hasMovement)
         {
             if (xVelocity < 0)
             {
@@ -142,18 +154,27 @@ public class PlayerController : MonoBehaviour
 
     private void HandleJumpControls()
     {
-        if (Input.GetKeyDown(jump) && jumpCount < 2)
+        if (Input.GetKeyDown(inputs.jump) && jumpCount < 2)
         {
-            StartCoroutine(HandleJump());
+            jumpCount++;
+            if (!onGround && jumpCount == 0)
+            {
+                jumpCount++;
+            }
+            if (jumpCoroutine != null)
+            {
+                StopCoroutine(jumpCoroutine);
+            }
+
+            jumpCoroutine = StartCoroutine(HandleJump());
         }
     }
 
     private IEnumerator HandleJump()
     {
-        jumpCount++;
         jumping = true;
         ascending = true;
-        bool isDoubleJump = jumpCount == 2;
+        bool isDoubleJump = jumpCount >= 2;
         if (isDoubleJump)
         {
             rigidbody.velocity = Vector3.zero;
@@ -168,6 +189,7 @@ public class PlayerController : MonoBehaviour
         
         jumping = false;
         ascending = false;
+        jumpCoroutine = null;
     }
 
     private void SlowDownVelocity()
