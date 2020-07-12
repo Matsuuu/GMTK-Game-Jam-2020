@@ -344,7 +344,11 @@ public class PlayerController : MonoBehaviour
         float oldMaxSpeed = maxSpeedReducer;
         maxSpeedReducer = oldMaxSpeed * boostMultiplier;
         velocity *= boostMultiplier;
-        yield return new WaitForSeconds(2);
+        if (velocity.x > 40)
+        {
+            velocity = new Vector2(40,velocity.y);
+        }
+        yield return new WaitForSeconds(2.5f);
         maxSpeedReducer = oldMaxSpeed;
 
     }

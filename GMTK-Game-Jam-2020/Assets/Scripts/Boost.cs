@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Boost : MonoBehaviour
 {
+    private bool boosting = false;
     private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
@@ -21,18 +22,19 @@ public class Boost : MonoBehaviour
     {
         if (collision.tag.Equals("Player"))
         {
-            StartCoroutine(BoostPlayer(collision.gameObject));
+            if(boosting != true)
+			{
+                boosting = true;
+                StartCoroutine(BoostPlayer(collision.gameObject));
+                boosting = false;
+            }
         }
      }
 
     private IEnumerator BoostPlayer(GameObject player)
     {
         audioSource.Play();
-        yield return new WaitForSeconds(0.05f);
-        audioSource.Play();
-        yield return new WaitForSeconds(0.05f);
-        audioSource.Play();
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.15f);
         player.GetComponent<PlayerController>().HandleBoost();
     }
 }
