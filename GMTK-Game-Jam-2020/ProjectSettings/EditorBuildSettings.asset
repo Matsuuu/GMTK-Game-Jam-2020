@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/TutorialStage.unity
     guid: fdd71a8e4abe2b14ea4c58ba3cc06bc6
   - enabled: 1
-    path: Assets/Scenes/ScoreStage.unity
-    guid: ff8110747aa6f84458e552b0eaff0721
+    path: Assets/Scenes/SecondStage.unity
+    guid: a8f79375bc1a7c74e9d0d1dae88eec53
   m_configObjects: {}

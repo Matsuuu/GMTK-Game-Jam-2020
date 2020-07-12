@@ -64,6 +64,12 @@ public class PersistentDataManager : MonoBehaviour
         SceneManager.LoadScene(stageNames[order]);
     }
 
+    public void NextStage()
+    {
+        currentStage++;
+        GoToStage(GetCurrentStageName());
+    }
+
     public void StartTime()
     {
         startTime = Time.time;
@@ -88,7 +94,9 @@ public class PersistentDataManager : MonoBehaviour
 
     private IEnumerator EndTimeout()
     {
+        yield return new WaitForSeconds(2);
+        GameObject winningBlur = GameObject.Find("WinningBlur");
+        winningBlur.GetComponent<ScoreBoard>().Show();
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene("ScoreStage");
     }
 }
