@@ -77,9 +77,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        HandleReset();
         if (noMove) return;
         HandleControls();
-        HandleReset();
     }
 
     private void FixedUpdate()
