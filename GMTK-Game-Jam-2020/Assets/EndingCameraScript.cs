@@ -16,7 +16,7 @@ public class EndingCameraScript : MonoBehaviour
     {
         if (transform.position.y > -60)
         {
-            transform.position = new Vector2(0, transform.position.y - 0.05f);
+            transform.position = new Vector2(0, transform.position.y - 0.025f);
         }
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))
         {

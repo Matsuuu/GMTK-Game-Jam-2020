@@ -16,9 +16,9 @@ public class PersistentDataManager : MonoBehaviour
     {
         "MenuScene",
         "TutorialStage", 
-        "SecondStage",
-         "OnlyRun",
          "ThirdStage",
+         "OnlyRun",
+        "SecondStage",
          "FinalScene",
          "EndScene"
     };

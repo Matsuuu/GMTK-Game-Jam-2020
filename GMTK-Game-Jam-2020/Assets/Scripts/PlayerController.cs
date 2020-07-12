@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     private bool inAir;
     private bool onGround;
     private bool jumping;
+    private bool levelEnd;
     public int jumpCount;
 
     // The reducers are used to use float values because we're moving in such a small space that 
@@ -92,7 +93,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleOutOfInputs()
     {
-        if (inputCalculator.movementControlsExhausted() && inputCalculator.jumpControlsExhausted())
+        if (inputCalculator.movementControlsExhausted() && inputCalculator.jumpControlsExhausted() && !levelEnd)
         {
             outOfControlsText.enabled = true;
             TriggerDeath();
@@ -317,6 +318,7 @@ public class PlayerController : MonoBehaviour
     public void HandleLevelEnd()
     {
         StartCoroutine(HandleVictorySounds());
+        levelEnd = true;
         noMove = true;
         animator.SetBool("Goal", true);
     }

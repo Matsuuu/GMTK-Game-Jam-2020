@@ -9668,7 +9668,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
+  m_Volume: 0.41
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -14687,6 +14687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80e0097e47ffb5c45bec2ac77e10d3c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outOfControlsText: {fileID: 0}
   jumpSound: {fileID: 8300000, guid: c2c1ca15e02e7fa489919c9d5352d0a8, type: 3}
   jetpackSound: {fileID: 8300000, guid: 2a6c8190a078c2147811f2b362d78127, type: 3}
   deathSounds: {fileID: 8300000, guid: 2aba22255d029f149855736354d353da, type: 3}
@@ -14700,6 +14701,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0}
   currentSpeed: 0
   gravity: 1
+  boostMultiplier: 2.5
   jumpCount: 0
 --- !u!61 &3388528268211055035
 BoxCollider2D:
