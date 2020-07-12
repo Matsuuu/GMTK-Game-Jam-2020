@@ -395,6 +395,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 991506322, guid: c1431347360fcdb4cb9a6d99df92411d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToNextStage
+      objectReference: {fileID: 0}
     - target: {fileID: 991506323, guid: c1431347360fcdb4cb9a6d99df92411d, type: 3}
       propertyPath: m_Enabled
       value: 1
