@@ -36,7 +36,11 @@ public class PersistentDataManager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
-        inputCalculator = GameObject.Find("GameManager").GetComponent<InputCalculator>();
+        GameObject gameManager = GameObject.Find("GameManager");
+        if (gameManager)
+        {
+            inputCalculator = gameManager.GetComponent<InputCalculator>();
+        }
     }
 
     // Update is called once per frame
@@ -48,6 +52,16 @@ public class PersistentDataManager : MonoBehaviour
     public String GetCurrentStageName()
     {
         return stageNames[currentStage];
+    }
+
+    public void GoToStage(String name)
+    {
+        SceneManager.LoadScene(name);
+    }
+
+    public void GoToStage(int order)
+    {
+        SceneManager.LoadScene(stageNames[order]);
     }
 
     public void StartTime()
