@@ -12,9 +12,16 @@ public class PlayerController : MonoBehaviour
     private InputCalculator inputCalculator;
     private Animator animator;
     private Rigidbody2D rigidbody;
+    private AudioSource playerAudioSource;
 
     private ParticleSystem jumpParticles;
     private ParticleSystem rocketParticles;
+
+    public AudioClip jumpSound;
+    public AudioClip jetpackSound;
+    public AudioClip deathSounds;
+    public AudioClip victorySound1;
+    public AudioClip victorySound2;
 
     public int maxSpeed = 1;
     public int acceleration = 1;
@@ -25,10 +32,10 @@ public class PlayerController : MonoBehaviour
     public float currentSpeed;
     public int gravity;
 
-    public bool noMove = false;
-    public bool inAir;
-    public bool onGround;
-    public bool jumping;
+    private bool noMove = false;
+    private bool inAir;
+    private bool onGround;
+    private bool jumping;
     public int jumpCount;
 
     // The reducers are used to use float values because we're moving in such a small space that 
@@ -50,6 +57,7 @@ public class PlayerController : MonoBehaviour
         inputCalculator = GameObject.Find("GameManager").GetComponent<InputCalculator>();
         jumpParticles = GameObject.Find("JumpParticles").GetComponent<ParticleSystem>();
         rocketParticles = GameObject.Find("RocketParticles").GetComponent<ParticleSystem>();
+        playerAudioSource = GameObject.Find("PlayerAudio").GetComponent<AudioSource>();
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
@@ -74,6 +82,14 @@ public class PlayerController : MonoBehaviour
         HandleVelocity();
         HandleGravity();
         currentSpeed = velocity.magnitude;
+    }
+
+    private void HandleOutOfInputs()
+    {
+        if (inputCalculator.movementControlsExhausted() && inputCalculator.jumpControlsExhausted())
+        {
+            TriggerDeath();
+        }
     }
 
     private void HandleReset()
@@ -205,10 +221,14 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("Jump");
         if (isDoubleJump)
         {
+            playerAudioSource.clip = jetpackSound;
+            playerAudioSource.Play();
             rocketParticles.Play();
             rigidbody.velocity = Vector3.zero;
         } else
         {
+            playerAudioSource.clip = jumpSound;
+            playerAudioSource.Play();
             jumpParticles.Play();
         }
 
@@ -249,6 +269,7 @@ public class PlayerController : MonoBehaviour
     {
         onGround = true;
         animator.SetBool("InAir", false);
+        HandleOutOfInputs();
         if (!jumping)
         {
             jumpCount = 0;
@@ -271,6 +292,8 @@ public class PlayerController : MonoBehaviour
 
     private void TriggerDeath()
     {
+        playerAudioSource.clip = deathSounds;
+        playerAudioSource.Play();
         animator.SetBool("Death", true);
         noMove = true;
         StartCoroutine(WaitForReset());
@@ -284,7 +307,21 @@ public class PlayerController : MonoBehaviour
 
     public void HandleLevelEnd()
     {
+        StartCoroutine(HandleVictorySounds());
         noMove = true;
         animator.SetBool("Goal", true);
+    }
+
+    private IEnumerator HandleVictorySounds()
+    {
+        playerAudioSource.clip = victorySound1;
+        playerAudioSource.Play();
+        yield return new WaitForSeconds(0.4f);
+        playerAudioSource.Play();
+        yield return new WaitForSeconds(0.4f);
+        playerAudioSource.Play();
+        yield return new WaitForSeconds(0.8f);
+        playerAudioSource.clip = victorySound2;
+        playerAudioSource.Play();
     }
 }
