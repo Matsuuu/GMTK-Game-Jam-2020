@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class PlayerController : MonoBehaviour
     private ParticleSystem jumpParticles;
     private ParticleSystem rocketParticles;
     private ParticleSystem smokeParticles;
+
+    public Text outOfControlsText;
 
     public AudioClip jumpSound;
     public AudioClip jetpackSound;
@@ -91,6 +94,7 @@ public class PlayerController : MonoBehaviour
     {
         if (inputCalculator.movementControlsExhausted() && inputCalculator.jumpControlsExhausted())
         {
+            outOfControlsText.enabled = true;
             TriggerDeath();
         }
     }
