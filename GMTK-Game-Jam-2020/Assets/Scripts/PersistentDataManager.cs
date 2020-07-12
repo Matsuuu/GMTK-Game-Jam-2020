@@ -16,7 +16,10 @@ public class PersistentDataManager : MonoBehaviour
     {
         "MenuScene",
         "TutorialStage", 
-        "SecondStage"
+        "SecondStage",
+         "",
+         "",
+         "FinalScene"
     };
     public struct StageTime
     {
@@ -36,6 +39,12 @@ public class PersistentDataManager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
+        Init();
+        
+    }
+
+    void Init()
+    {
         GameObject gameManager = GameObject.Find("GameManager");
         if (gameManager)
         {
@@ -56,11 +65,13 @@ public class PersistentDataManager : MonoBehaviour
 
     public void GoToStage(String name)
     {
+        currentStage = stageNames.FindIndex(n => n == name);
         SceneManager.LoadScene(name);
     }
 
     public void GoToStage(int order)
     {
+        currentStage = order;
         SceneManager.LoadScene(stageNames[order]);
     }
 
@@ -77,6 +88,7 @@ public class PersistentDataManager : MonoBehaviour
 
     public void EndTime()
     {
+        Init();
         float timeTaken = Time.time - startTime;
 
         int minutes = (int) Mathf.Floor(timeTaken / 60);
