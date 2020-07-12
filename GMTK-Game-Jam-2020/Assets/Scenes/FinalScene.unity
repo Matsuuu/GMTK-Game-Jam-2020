@@ -918,7 +918,7 @@ PrefabInstance:
     - target: {fileID: 236888500345607670, guid: c1431347360fcdb4cb9a6d99df92411d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.62
+      value: 40.1
       objectReference: {fileID: 0}
     - target: {fileID: 236888500345607670, guid: c1431347360fcdb4cb9a6d99df92411d,
         type: 3}
@@ -968,17 +968,17 @@ PrefabInstance:
     - target: {fileID: 236888500345607671, guid: c1431347360fcdb4cb9a6d99df92411d,
         type: 3}
       propertyPath: m_BackGroundColor.r
-      value: 0.11320752
+      value: 0.21960784
       objectReference: {fileID: 0}
     - target: {fileID: 236888500345607671, guid: c1431347360fcdb4cb9a6d99df92411d,
         type: 3}
       propertyPath: m_BackGroundColor.g
-      value: 0.11320752
+      value: 0.21960784
       objectReference: {fileID: 0}
     - target: {fileID: 236888500345607671, guid: c1431347360fcdb4cb9a6d99df92411d,
         type: 3}
       propertyPath: m_BackGroundColor.b
-      value: 0.11320752
+      value: 0.21960784
       objectReference: {fileID: 0}
     - target: {fileID: 236888500345607673, guid: c1431347360fcdb4cb9a6d99df92411d,
         type: 3}
@@ -4264,6 +4264,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1047698867 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 236888500345607673, guid: c1431347360fcdb4cb9a6d99df92411d,
+    type: 3}
+  m_PrefabInstance: {fileID: 166147794}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1047698871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047698867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb06c48ed7be032479ef2dd964f6fd13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1050216738
 GameObject:
   m_ObjectHideFlags: 0
