@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private ParticleSystem jumpParticles;
     private ParticleSystem rocketParticles;
+    private ParticleSystem smokeParticles;
 
     public AudioClip jumpSound;
     public AudioClip jetpackSound;
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour
         inputCalculator = GameObject.Find("GameManager").GetComponent<InputCalculator>();
         jumpParticles = GameObject.Find("JumpParticles").GetComponent<ParticleSystem>();
         rocketParticles = GameObject.Find("RocketParticles").GetComponent<ParticleSystem>();
+        smokeParticles = GameObject.Find("SmokeParticles").GetComponent<ParticleSystem>();
         playerAudioSource = GameObject.Find("PlayerAudio").GetComponent<AudioSource>();
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -302,7 +304,9 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator WaitForReset()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(1);
+        smokeParticles.Play();
+        yield return new WaitForSeconds(3);
         DoReset();
     }
 
