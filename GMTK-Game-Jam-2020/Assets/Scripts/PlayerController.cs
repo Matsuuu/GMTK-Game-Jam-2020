@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rigidbody;
     private AudioSource playerAudioSource;
+    private PersistentDataManager persistentDataManager;
 
     private ParticleSystem jumpParticles;
     private ParticleSystem rocketParticles;
@@ -65,6 +66,10 @@ public class PlayerController : MonoBehaviour
         rocketParticles = GameObject.Find("RocketParticles").GetComponent<ParticleSystem>();
         smokeParticles = GameObject.Find("SmokeParticles").GetComponent<ParticleSystem>();
         playerAudioSource = GameObject.Find("PlayerAudio").GetComponent<AudioSource>();
+        if (GameObject.Find("PersistentDataManager"))
+        {
+            persistentDataManager = GameObject.Find("PersistentDataManager").GetComponent<PersistentDataManager>();
+        }
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
@@ -79,6 +84,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         HandleReset();
+        HandleExit();
         if (noMove) return;
         HandleControls();
     }
@@ -97,6 +103,14 @@ public class PlayerController : MonoBehaviour
         {
             outOfControlsText.enabled = true;
             TriggerDeath();
+        }
+    }
+
+    private void HandleExit()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            persistentDataManager.GoToStage(0);
         }
     }
 

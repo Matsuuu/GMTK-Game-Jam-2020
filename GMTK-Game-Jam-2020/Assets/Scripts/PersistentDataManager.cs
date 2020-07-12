@@ -32,6 +32,7 @@ public class PersistentDataManager : MonoBehaviour
             this.seconds = seconds;
         }
     }
+    static PersistentDataManager instance;
     public int currentStage = 1;
 
     public StageTime stageTime;
@@ -39,6 +40,14 @@ public class PersistentDataManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
         DontDestroyOnLoad(this);
         Init();
         

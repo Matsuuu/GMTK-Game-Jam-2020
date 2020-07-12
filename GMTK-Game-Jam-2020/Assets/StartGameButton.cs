@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoalZone : MonoBehaviour
+public class StartGameButton : MonoBehaviour
 {
     private PersistentDataManager persistentDataManager;
     // Start is called before the first frame update
     void Start()
     {
         persistentDataManager = GameObject.Find("PersistentDataManager").GetComponent<PersistentDataManager>();
-        persistentDataManager.StartTime();
     }
 
     // Update is called once per frame
@@ -18,11 +17,8 @@ public class GoalZone : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void GoToFirstStage()
     {
-        if (collision.tag == "Player") { 
-            persistentDataManager.EndTime();
-            GameObject.Find("Player").GetComponent<PlayerController>().HandleLevelEnd();
-        }
+        persistentDataManager.GoToStage(1);
     }
 }
