@@ -300,6 +300,8 @@ MonoBehaviour:
   canvas: {fileID: 743344068}
   spriteRenderer: {fileID: 25344717}
   persistentDataManager: {fileID: 0}
+  inputs: {fileID: 0}
+  showing: 0
 --- !u!1 &63318401
 GameObject:
   m_ObjectHideFlags: 0

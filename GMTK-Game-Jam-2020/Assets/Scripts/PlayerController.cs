@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 velocity;
     public float currentSpeed;
     public int gravity;
+    public float boostMultiplier = 2.5f;
 
     private bool noMove = false;
     private bool inAir;
@@ -323,5 +324,20 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
         playerAudioSource.clip = victorySound2;
         playerAudioSource.Play();
+    }
+
+    public void HandleBoost()
+    {
+        StartCoroutine(Boost());
+    }
+
+    private IEnumerator Boost()
+    {
+        float oldMaxSpeed = maxSpeedReducer;
+        maxSpeedReducer = oldMaxSpeed * boostMultiplier;
+        velocity *= boostMultiplier;
+        yield return new WaitForSeconds(2);
+        maxSpeedReducer = oldMaxSpeed;
+
     }
 }
