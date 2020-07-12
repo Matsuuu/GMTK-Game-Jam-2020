@@ -17,9 +17,10 @@ public class PersistentDataManager : MonoBehaviour
         "MenuScene",
         "TutorialStage", 
         "SecondStage",
-         "",
-         "",
-         "FinalScene"
+         "OnlyRun",
+         "ThirdStage",
+         "FinalScene",
+         "EndScene"
     };
     public struct StageTime
     {
